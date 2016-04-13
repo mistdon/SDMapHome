@@ -7,26 +7,35 @@
 //
 
 #import "SDRootViewController.h"
-#import "SDMapViewController.h"
-#import "JPTableViewController.h"
-#import "SDMapChoiceView.h"
+#import "SDFileToolClass.h"
+#import <objc/runtime.h>
 
 static NSString *const menuCellIdentifier = @"menuCellIdentifier";
 
 @interface SDRootViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *menuTableView;
+@property (nonatomic, strong) NSMutableArray *source;
 
 @end
 
-@implementation SDRootViewController{
-    NSArray *source;
-}
+@implementation SDRootViewController
 
+#pragma mark - lazy loading
+- (NSMutableArray *)source{
+    if (!_source) {
+        _source = [@[] mutableCopy];
+    }
+    return _source;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"SD Map";
-    source = @[@"Map",@"JSPatch"];
-    [self.menuTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:menuCellIdentifier];
+    self.title = @"默默Desire";
+    //1. get source class
+    NSArray *array = [SDFileToolClass sd_getRootClasses];
+    [self.source addObjectsFromArray:array];
+    //2. set UI
+    [self setupUI];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -34,33 +43,31 @@ static NSString *const menuCellIdentifier = @"menuCellIdentifier";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - setupUI
+
+- (void)setupUI{
+    [self.menuTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:menuCellIdentifier];
+    self.menuTableView.tableFooterView = [UIView new];
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return  source.count;
+    return  self.source.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:menuCellIdentifier];
-    cell.textLabel.text = source[indexPath.row];
+    NSDictionary *dict = self.source[indexPath.row];
+    cell.textLabel.text = dict[@"class_functionName"];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
-        SDMapViewController *map = [SDMapViewController new];
-        map.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:map animated:YES];
-    }else if (indexPath.row == 1){
-        JPTableViewController *jp = [[JPTableViewController alloc] init];
-        [self.navigationController pushViewController:jp animated:YES];
-    }
-
+    NSDictionary *dict = self.source[indexPath.row];
+    NSString *destVC = [dict objectForKey:@"class_destinationViewController"];
+    if (destVC.length < 1) return;  //当目标ViewController为空时,返回
+    Class class                       = NSClassFromString(destVC);
+    UIViewController *instance        = [[class alloc] init];
+    instance.title                    = dict[@"class_functionName"];
+    instance.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:instance animated:YES];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

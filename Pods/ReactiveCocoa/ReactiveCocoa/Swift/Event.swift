@@ -131,9 +131,9 @@ extension Event: CustomStringConvertible {
 /// Event protocol for constraining signal extensions
 public protocol EventType {
 	// The value type of an event.
-	associatedtype Value
+	typealias Value
 	/// The error type of an event. If errors aren't possible then `NoError` can be used.
-	associatedtype Error: ErrorType
+	typealias Error: ErrorType
 	/// Extracts the event from the receiver.
 	var event: Event<Value, Error> { get }
 }

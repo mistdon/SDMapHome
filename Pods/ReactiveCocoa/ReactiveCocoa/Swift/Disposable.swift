@@ -8,7 +8,7 @@
 
 /// Represents something that can be “disposed,” usually associated with freeing
 /// resources or canceling work.
-public protocol Disposable: class {
+public protocol Disposable {
 	/// Whether this disposable has been disposed already.
 	var disposed: Bool { get }
 
@@ -78,11 +78,10 @@ public final class CompositeDisposable: Disposable {
 		public func remove() {
 			if let token = bagToken.swap(nil) {
 				disposable?.disposables.modify { bag in
-					guard let immutableBag = bag else { return nil }
-					var mutableBag = immutableBag
+					guard var bag = bag else { return nil }
 
-					mutableBag.removeValueForToken(token)
-					return mutableBag
+					bag.removeValueForToken(token)
+					return bag
 				}
 			}
 		}
@@ -126,13 +125,12 @@ public final class CompositeDisposable: Disposable {
 
 		var handle: DisposableHandle? = nil
 		disposables.modify { ds in
-			guard let immutableDs = ds else { return nil }
-			var mutableDs = immutableDs
+			guard var ds = ds else { return nil }
 
-			let token = mutableDs.insert(d)
+			let token = ds.insert(d)
 			handle = DisposableHandle(bagToken: token, disposable: self)
 
-			return mutableDs
+			return ds
 		}
 
 		if let handle = handle {
@@ -198,10 +196,9 @@ public final class SerialDisposable: Disposable {
 		}
 
 		set(d) {
-			let oldState = state.modify { state in
-				var mutableState = state
-				mutableState.innerDisposable = d
-				return mutableState
+			let oldState = state.modify { (var state) in
+				state.innerDisposable = d
+				return state
 			}
 
 			oldState.innerDisposable?.dispose()

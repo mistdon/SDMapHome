@@ -1,4 +1,3 @@
-import Foundation
 import Result
 
 /// A SignalProducer creates Signals that can produce values of type `Value` and/or
@@ -120,8 +119,8 @@ public struct SignalProducer<Value, Error: ErrorType> {
 	/// After a terminating event has been added to the queue, the observer
 	/// will not add any further events. This _does not_ count against the
 	/// value capacity so no buffered values will be dropped on termination.
-	public static func buffer(capacity: Int) -> (SignalProducer, Signal<Value, Error>.Observer) {
-		precondition(capacity >= 0, "Invalid capacity: \(capacity)")
+	public static func buffer(capacity: Int = Int.max) -> (SignalProducer, Signal<Value, Error>.Observer) {
+		precondition(capacity >= 0)
 
 		// This is effectively used as a synchronous mutex, but permitting
 		// limited recursive locking (see below).
@@ -140,13 +139,14 @@ public struct SignalProducer<Value, Error: ErrorType> {
 			var token: RemovalToken?
 
 			let replay: () -> () = {
-				let originalState = state.modify { state in
-					var mutableState = state
-					token = mutableState.observers?.insert(observer)
-					return mutableState
+				let originalState = state.modify { (var state) in
+					token = state.observers?.insert(observer)
+					return state
 				}
 
-				originalState.values.forEach(observer.sendNext)
+				for value in originalState.values {
+					observer.sendNext(value)
+				}
 
 				if let terminationEvent = originalState.terminationEvent {
 					observer.action(terminationEvent)
@@ -167,10 +167,9 @@ public struct SignalProducer<Value, Error: ErrorType> {
 
 			if let token = token {
 				disposable.addDisposable {
-					state.modify { state in
-						var mutableState = state
-						mutableState.observers?.removeValueForToken(token)
-						return mutableState
+					state.modify { (var state) in
+						state.observers?.removeValueForToken(token)
+						return state
 					}
 				}
 			}
@@ -180,19 +179,17 @@ public struct SignalProducer<Value, Error: ErrorType> {
 			// Send serially with respect to other senders, and never while
 			// another thread is in the process of replaying.
 			dispatch_sync(queue) {
-				let originalState = state.modify { state in
-					var mutableState = state
-
+				let originalState = state.modify { (var state) in
 					if let value = event.value {
-						mutableState.addValue(value, upToCapacity: capacity)
+						state.addValue(value, upToCapacity: capacity)
 					} else {
 						// Disconnect all observers and prevent future
 						// attachments.
-						mutableState.terminationEvent = event
-						mutableState.observers = nil
+						state.terminationEvent = event
+						state.observers = nil
 					}
 
-					return mutableState
+					return state
 				}
 
 				if let observers = originalState.observers {
@@ -289,10 +286,10 @@ private struct BufferState<Value, Error: ErrorType> {
 
 public protocol SignalProducerType {
 	/// The type of values being sent on the producer
-	associatedtype Value
+	typealias Value
 	/// The type of error that can occur on the producer. If errors aren't possible
 	/// then `NoError` can be used.
-	associatedtype Error: ErrorType
+	typealias Error: ErrorType
 
 	/// Extracts a signal producer from the receiver.
 	var producer: SignalProducer<Value, Error> { get }
@@ -507,25 +504,7 @@ extension SignalProducerType {
 	/// will also be interrupted.
 	@warn_unused_result(message="Did you forget to call `start` on the producer?")
 	public func combineLatestWith<U>(otherProducer: SignalProducer<U, Error>) -> SignalProducer<(Value, U), Error> {
-		// This should be the implementation of this method:
-		// return liftRight(Signal.combineLatestWith)(otherProducer)
-		//
-		// However, due to a Swift miscompilation (with `-O`) we need to inline `liftRight` here.
-		// See https://github.com/ReactiveCocoa/ReactiveCocoa/issues/2751 for more details.
-		//
-		// This can be reverted once tests with -O don't crash. 
-
-		return SignalProducer { observer, outerDisposable in
-			self.startWithSignal { signal, disposable in
-				outerDisposable.addDisposable(disposable)
-
-				otherProducer.startWithSignal { otherSignal, otherDisposable in
-					outerDisposable.addDisposable(otherDisposable)
-
-					signal.combineLatestWith(otherSignal).observe(observer)
-				}
-			}
-		}
+		return liftRight(Signal.combineLatestWith)(otherProducer)
 	}
 
 	/// Combines the latest value of the receiver with the latest value from
@@ -1053,6 +1032,77 @@ public func zip<S: SequenceType, Value, Error where S.Generator.Element == Signa
 	return .empty
 }
 
+
+extension SignalProducerType where Value: SignalProducerType, Error == Value.Error {
+	/// Flattens the inner producers sent upon `producer` (into a single producer of
+	/// values), according to the semantics of the given strategy.
+	///
+	/// If `producer` or an active inner producer fails, the returned
+	/// producer will forward that failure immediately.
+	///
+	/// `Interrupted` events on inner producers will be treated like `Completed`
+	/// events on inner producers.
+	@warn_unused_result(message="Did you forget to call `start` on the producer?")
+	public func flatten(strategy: FlattenStrategy) -> SignalProducer<Value.Value, Error> {
+		return lift { (signal: Signal<Value, Error>) -> Signal<Value.Value, Error> in
+			return signal.flatten(strategy)
+		}
+	}
+}
+
+extension SignalProducerType where Value: SignalType, Error == Value.Error {
+	/// Flattens the inner signals sent upon `producer` (into a single producer of
+	/// values), according to the semantics of the given strategy.
+	///
+	/// If `producer` or an active inner signal emits an error, the returned
+	/// producer will forward that error immediately.
+	///
+	/// `Interrupted` events on inner signals will be treated like `Completed`
+	/// events on inner signals.
+	@warn_unused_result(message="Did you forget to call `start` on the producer?")
+	public func flatten(strategy: FlattenStrategy) -> SignalProducer<Value.Value, Error> {
+		return self.lift { $0.flatten(strategy) }
+	}
+}
+
+
+extension SignalProducerType {
+	/// Maps each event from `producer` to a new producer, then flattens the
+	/// resulting producers (into a single producer of values), according to the
+	/// semantics of the given strategy.
+	///
+	/// If `producer` or any of the created producers fail, the returned
+	/// producer will forward that failure immediately.
+	@warn_unused_result(message="Did you forget to call `start` on the producer?")
+	public func flatMap<U>(strategy: FlattenStrategy, transform: Value -> SignalProducer<U, Error>) -> SignalProducer<U, Error> {
+		return map(transform).flatten(strategy)
+	}
+
+	/// Maps each event from `producer` to a new signal, then flattens the
+	/// resulting signals (into a single producer of values), according to the
+	/// semantics of the given strategy.
+	///
+	/// If `producer` or any of the created signals emit an error, the returned
+	/// producer will forward that error immediately.
+	@warn_unused_result(message="Did you forget to call `start` on the producer?")
+	public func flatMap<U>(strategy: FlattenStrategy, transform: Value -> Signal<U, Error>) -> SignalProducer<U, Error> {
+		return map(transform).flatten(strategy)
+	}
+
+	/// Catches any failure that may occur on the input producer, mapping to a new producer
+	/// that starts in its place.
+	@warn_unused_result(message="Did you forget to call `start` on the producer?")
+	public func flatMapError<F>(handler: Error -> SignalProducer<Value, F>) -> SignalProducer<Value, F> {
+		return self.lift { $0.flatMapError(handler) }
+	}
+
+	/// `concat`s `next` onto `self`.
+	@warn_unused_result(message="Did you forget to call `start` on the producer?")
+	public func concat(next: SignalProducer<Value, Error>) -> SignalProducer<Value, Error> {
+		return SignalProducer<SignalProducer<Value, Error>, Error>(values: [self.producer, next]).flatten(.Concat)
+	}
+}
+
 extension SignalProducerType {
 	/// Repeats `self` a total of `count` times. Repeating `1` times results in
 	/// an equivalent signal producer.
@@ -1181,83 +1231,5 @@ extension SignalProducerType {
 	@warn_unused_result(message="Did you forget to check the result?")
 	public func wait() -> Result<(), Error> {
 		return then(SignalProducer<(), Error>(value: ())).last() ?? .Success(())
-	}
-
-	/// Creates a new `SignalProducer` that will multicast values emitted by
-	/// the underlying producer, up to `capacity`.
-	/// This means that all clients of this `SignalProducer` will see the same version
-	/// of the emitted values/errors.
-	///
-	/// The underlying `SignalProducer` will not be started until `self` is started
-	/// for the first time. When subscribing to this producer, all previous values
-	/// (up to `capacity`) will be emitted, followed by any new values.
-	///
-	/// If you find yourself needing *the current value* (the last buffered value)
-	/// you should consider using `PropertyType` instead, which, unlike this operator,
-	/// will guarantee at compile time that there's always a buffered value.
-	/// This operator is not recommended in most cases, as it will introduce an implicit
-	/// relationship between the original client and the rest, so consider alternatives
-	/// like `PropertyType`, `SignalProducer.buffer`, or representing your stream using 
-	/// a `Signal` instead.
-	///
-	/// This operator is only recommended when you absolutely need to introduce
-	/// a layer of caching in front of another `SignalProducer`.
-	///
-	/// This operator has the same semantics as `SignalProducer.buffer`.
-	@warn_unused_result(message="Did you forget to call `start` on the producer?")
-	public func replayLazily(capacity: Int) -> SignalProducer<Value, Error> {
-		precondition(capacity >= 0, "Invalid capacity: \(capacity)")
-
-		var producer: SignalProducer<Value, Error>?
-		var producerObserver: SignalProducer<Value, Error>.ProducedSignal.Observer?
-
-		let lock = NSLock()
-		lock.name = "org.reactivecocoa.ReactiveCocoa.SignalProducer.replayLazily"
-
-		// This will go "out of scope" when the returned `SignalProducer` goes out of scope.
-		// This lets us know when we're supposed to dispose the underlying producer.
-		// This is necessary because `struct`s don't have `deinit`.
-		let token = NSObject()
-
-		return SignalProducer { observer, disposable in
-			let initializedProducer: SignalProducer<Value, Error>
-			let initializedObserver: SignalProducer<Value, Error>.ProducedSignal.Observer
-			let shouldStartUnderlyingProducer: Bool
-
-			lock.lock()
-			if let producer = producer, producerObserver = producerObserver {
-				(initializedProducer, initializedObserver) = (producer, producerObserver)
-				shouldStartUnderlyingProducer = false
-			} else {
-				let (producerTemp, observerTemp) = SignalProducer<Value, Error>.buffer(capacity)
-
-				(producer, producerObserver) = (producerTemp, observerTemp)
-				(initializedProducer, initializedObserver) = (producerTemp, observerTemp)
-				shouldStartUnderlyingProducer = true
-			}
-			lock.unlock()
-
-			// subscribe `observer` before starting the underlying producer.
-			disposable += initializedProducer.start(observer)
-
-			if shouldStartUnderlyingProducer {
-				self.producer
-					.takeUntil(token.willDeallocSignal)
-					.start(initializedObserver)
-			}
-		}
-	}
-}
-
-private extension NSObject {
-	var willDeallocSignal: SignalProducer<(), NoError> {
-		return self
-			.rac_willDeallocSignal()
-			.toSignalProducer()
-			.map { _ in () }
-			.mapError { error in
-				fatalError("Unexpected error: \(error)")
-				()
-			}
 	}
 }

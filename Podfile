@@ -15,6 +15,6 @@ pod 'Masonry'         #约束
 pod 'CocoaLumberjack' #log
 
 use_frameworks!
-pod 'ReactiveCocoa'
+pod 'ReactiveCocoa','~>4.0.4-alpha-1'
 pod 'SDWebImage'
 

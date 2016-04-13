@@ -11,18 +11,18 @@ PODS:
   - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
   - Masonry (1.0.0)
-  - ReactiveCocoa (4.1.0):
-    - ReactiveCocoa/UI (= 4.1.0)
-    - Result (~> 2.0)
-  - ReactiveCocoa/Core (4.1.0):
+  - ReactiveCocoa (4.0.4-alpha-4):
+    - ReactiveCocoa/UI (= 4.0.4-alpha-4)
+    - Result (~> 1.0)
+  - ReactiveCocoa/Core (4.0.4-alpha-4):
     - ReactiveCocoa/no-arc
-    - Result (~> 2.0)
-  - ReactiveCocoa/no-arc (4.1.0):
-    - Result (~> 2.0)
-  - ReactiveCocoa/UI (4.1.0):
+    - Result (~> 1.0)
+  - ReactiveCocoa/no-arc (4.0.4-alpha-4):
+    - Result (~> 1.0)
+  - ReactiveCocoa/UI (4.0.4-alpha-4):
     - ReactiveCocoa/Core
-    - Result (~> 2.0)
-  - Result (2.0.0)
+    - Result (~> 1.0)
+  - Result (1.0.2)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -33,7 +33,7 @@ DEPENDENCIES:
   - AMapSearch
   - CocoaLumberjack
   - Masonry
-  - ReactiveCocoa
+  - ReactiveCocoa (~> 4.0.4-alpha-1)
   - SDWebImage
 
 SPEC CHECKSUMS:
@@ -42,8 +42,8 @@ SPEC CHECKSUMS:
   AMapSearch: cff4faf59c007f7d1f2bae2d7170c3912783981a
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
-  ReactiveCocoa: d70004d7a366a7b8e87e60ce2347182c77701949
-  Result: 9e75e1111c774c6ac594e14907b15057053a7959
+  ReactiveCocoa: e459ea92099447802df20c4735e31e8139b06094
+  Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
 
 COCOAPODS: 0.39.0

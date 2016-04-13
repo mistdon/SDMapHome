@@ -47,16 +47,18 @@ static CGFloat const kMargin = 10;
 #pragma mark - lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden = YES;
 
+    [self startUpdateingLocaitonSingelTime];
+
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
     [self configureMapView];
     
     [self.view addSubview:self.searchButton];
     
     [self configureChoiceView];
-    
-    [self startUpdateingLocaitonSingelTime];
-    
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];

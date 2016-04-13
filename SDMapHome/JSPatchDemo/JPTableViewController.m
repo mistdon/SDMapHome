@@ -23,11 +23,6 @@ static NSString *const jpcell = @"jpcellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataSource = [NSMutableArray arrayWithObjects:@"123",@"234",nil];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:jpcell];
 }
 
@@ -48,9 +43,12 @@ static NSString *const jpcell = @"jpcellIdentifier";
     return 3;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *content = self.dataSource[[indexPath row]];  //可能会超出数组范围导致crash
-    JPViewController *ctrl = [[JPViewController alloc] initWithContent:content];
-    [self.navigationController pushViewController:ctrl animated:YES];
+    NSLog(@"indexPath.row = %ld",(long)indexPath.row);
+    if (self.dataSource.count > indexPath.row) {
+        NSString *content = self.dataSource[[indexPath row]];  //可能会超出数组范围导致crash
+        JPViewController *ctrl = [[JPViewController alloc] initWithContent:content];
+        [self.navigationController pushViewController:ctrl animated:YES];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

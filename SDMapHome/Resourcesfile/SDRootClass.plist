@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SDMapHomeRootClass</key>
+	<array>
+		<dict>
+			<key>class_icon</key>
+			<string></string>
+			<key>class_functionName</key>
+			<string>Map</string>
+			<key>class_destinationViewController</key>
+			<string>SDMapViewController</string>
+		</dict>
+		<dict>
+			<key>class_icon</key>
+			<string></string>
+			<key>class_functionName</key>
+			<string>JSPatch</string>
+			<key>class_destinationViewController</key>
+			<string>JPTableViewController</string>
+		</dict>
+		<dict>
+			<key>class_icon</key>
+			<string></string>
+			<key>class_functionName</key>
+			<string>EaseMob</string>
+			<key>class_destinationViewController</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>class_icon</key>
+			<string></string>
+			<key>class_functionName</key>
+			<string>MVVM+RAC</string>
+			<key>class_destinationViewController</key>
+			<string></string>
+		</dict>
+	</array>
+</dict>
+</plist>
