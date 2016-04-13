@@ -1,0 +1,29 @@
+//
+//  SDMapHome-Prefix.pch
+//  SDMapHome
+//
+//  Created by shendong on 16/4/5.
+//  Copyright © 2016年 Allen. All rights reserved.
+//
+
+#ifndef SDMapHome_Prefix_pch
+#define SDMapHome_Prefix_pch
+
+#import <MAMapKit/MAMapKit.h>                   //3D地图
+#import <AMapLocationKit/AMapLocationKit.h>     //定位
+#import <AMapSearchKit/AMapSearchKit.h>         //搜索
+#import <CoreLocation/CoreLocation.h>    
+//#import <AMapNaviKit/AMapNaviKit.h>           //导航
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import <Masonry.h>
+
+
+
+#import "SDFuntionDefine.h"
+#define WS(weakSelf) __weak __typeof(&*self)weakSelf = self
+
+
+#endif /* SDMapHome_Prefix_pch */

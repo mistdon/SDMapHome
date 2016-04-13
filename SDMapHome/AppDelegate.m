@@ -7,6 +7,20 @@
 //
 
 #import "AppDelegate.h"
+#import <JSPatch/JSPatch.h>
+
+//高德地图KEY
+static NSString *const KGao_De_KEY = @"20fa6f28cd02b0833a568b2ec084425f";
+/**
+ *  已导入高德库
+    1. 高德导航
+    2. 高德3D地图
+    3. 高德地图搜索
+    4. 高德定位
+ */
+
+//JSPatch KEY
+static NSString *const KJSPatchKEY = @"1285cb383ce9ea76"; //APP版本1.0
 
 @interface AppDelegate ()
 
@@ -17,15 +31,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [self configueGao_DeMap];
+    
+//    [self configueJSPatch];
+    
     return YES;
 }
-
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
@@ -41,5 +60,28 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+#pragma mark - 配置 SDK
+/**
+ *  配置高德地图
+ */
+- (void)configueGao_DeMap{
+    //1.高德3D地图
+    [MAMapServices sharedServices].apiKey = KGao_De_KEY;
+    [AMapSearchServices sharedServices].apiKey = KGao_De_KEY;
+    //2.高德定位
+    [AMapLocationServices sharedServices].apiKey = KGao_De_KEY;
+    
+}
 
+- (void)configueJSPatch{
+//    [JSPatch startWithAppKey:KJSPatchKEY];
+    [JSPatch testScriptInBundle];
+    [JSPatch sync];
+    [JSPatch setupLogger:^(NSString * message) {
+        NSLog(@"message");
+    }];
+    [JSPatch setupCallback:^(JPCallbackType type, NSDictionary *data, NSError *error) {
+        NSLog(@"data = %@, error = %@",data,error);
+    }];
+}
 @end
