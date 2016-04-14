@@ -32,7 +32,7 @@ static NSString *const KJSPatchKEY = @"1285cb383ce9ea76"; //APP版本1.0
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    NSLog(@"homeDirectory = %@",NSHomeDirectory());
     [self configueGao_DeMap];
     
 //    [self configueJSPatch];

@@ -22,6 +22,7 @@
 		3B10F1921CB50128001F52A0 /* SDMapChoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B10F1911CB50128001F52A0 /* SDMapChoiceView.m */; };
 		3B1A4EBC1CB560DA0075D602 /* SDMapSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A4EBA1CB560DA0075D602 /* SDMapSearchViewController.m */; };
 		3B1A4EBD1CB560DA0075D602 /* SDMapSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1A4EBB1CB560DA0075D602 /* SDMapSearchViewController.xib */; };
+		3B216A201CBFE7D900CFC487 /* SDLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216A1F1CBFE7D900CFC487 /* SDLoginManager.m */; };
 		3B40618D1CB625E800A607FF /* SDSearchResutlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B40618C1CB625E800A607FF /* SDSearchResutlTableViewCell.m */; };
 		3B6181CD1CBF525500BD0203 /* SDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6181CB1CBF525500BD0203 /* SDLoginViewController.m */; };
 		3B6181CE1CBF525500BD0203 /* SDLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B6181CC1CBF525500BD0203 /* SDLoginViewController.xib */; };
@@ -60,6 +61,8 @@
 		3B1A4EB91CB560DA0075D602 /* SDMapSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMapSearchViewController.h; sourceTree = "<group>"; };
 		3B1A4EBA1CB560DA0075D602 /* SDMapSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMapSearchViewController.m; sourceTree = "<group>"; };
 		3B1A4EBB1CB560DA0075D602 /* SDMapSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDMapSearchViewController.xib; sourceTree = "<group>"; };
+		3B216A1E1CBFE7D900CFC487 /* SDLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLoginManager.h; sourceTree = "<group>"; };
+		3B216A1F1CBFE7D900CFC487 /* SDLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLoginManager.m; sourceTree = "<group>"; };
 		3B40618B1CB625E800A607FF /* SDSearchResutlTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSearchResutlTableViewCell.h; sourceTree = "<group>"; };
 		3B40618C1CB625E800A607FF /* SDSearchResutlTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSearchResutlTableViewCell.m; sourceTree = "<group>"; };
 		3B6181CA1CBF525500BD0203 /* SDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLoginViewController.h; sourceTree = "<group>"; };
@@ -123,8 +126,8 @@
 				3B82B3611CB6027700195D70 /* Class */,
 				3B6C911E1CBE124C001094BC /* Resourcesfile */,
 				3B6C91211CBE130D001094BC /* Tool */,
-				3B6181C91CBF520E00BD0203 /* MVVM+RAC */,
-				3B6181CF1CBF590000BD0203 /* Model */,
+				3B216A1C1CBFE7C800CFC487 /* Model */,
+				3B216A1D1CBFE7C800CFC487 /* MVVM+RAC */,
 				3B03B27F1CB3B8F300B6052B /* AppDelegate.h */,
 				3B03B2801CB3B8F300B6052B /* AppDelegate.m */,
 				3B03B29C1CB3CEEE00B6052B /* SDRootViewController.h */,
@@ -188,18 +191,20 @@
 			path = SDK;
 			sourceTree = "<group>";
 		};
-		3B6181C91CBF520E00BD0203 /* MVVM+RAC */ = {
+		3B216A1C1CBFE7C800CFC487 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B216A1E1CBFE7D900CFC487 /* SDLoginManager.h */,
+				3B216A1F1CBFE7D900CFC487 /* SDLoginManager.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3B216A1D1CBFE7C800CFC487 /* MVVM+RAC */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = "MVVM+RAC";
-			sourceTree = "<group>";
-		};
-		3B6181CF1CBF590000BD0203 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		3B6C910E1CBE120E001094BC /* JSPatchDemo */ = {
@@ -410,6 +415,7 @@
 			files = (
 				3B1A4EBC1CB560DA0075D602 /* SDMapSearchViewController.m in Sources */,
 				3B6181CD1CBF525500BD0203 /* SDLoginViewController.m in Sources */,
+				3B216A201CBFE7D900CFC487 /* SDLoginManager.m in Sources */,
 				3B6C91141CBE120E001094BC /* JPTableViewController.m in Sources */,
 				3B82B3651CB602F800195D70 /* SDSNumerousView.m in Sources */,
 				3B03B29A1CB3CE5300B6052B /* SDMapViewController.m in Sources */,

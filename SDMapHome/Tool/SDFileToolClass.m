@@ -75,13 +75,21 @@ NSString * const SDCrashFileDirectory = @"SDMapHomeCrashFileDirectory";
     }
     return result;
 }
-+ (void)sd_clearCrashLogs{
++ (BOOL)sd_clearCrashLogs{
      NSString *crashPath = [[self sd_getCachesPath] stringByAppendingPathComponent:SDCrashFileDirectory];
-    BOOL bRet = [[NSFileManager defaultManager] fileExistsAtPath:crashPath];
-    
-    if (bRet) {
-//        return [[[NSFileManager defaultManager] removeItemAtPath:crashPath error:nil] ];
-        return[[NSFileManager defaultManager] removeItemAtPath:crashPath error:nil];
+    NSFileManager *manager = [NSFileManager defaultManager];
+    if (![manager fileExistsAtPath:crashPath]) return YES; //如果不存在,则默认为删除成功
+    NSArray *contents = [manager contentsOfDirectoryAtPath:crashPath error:NULL];
+    if (contents.count == 0) return YES;
+    NSEnumerator *enums = [contents objectEnumerator];
+    NSString *filename;
+    BOOL success = YES;
+    while (filename = [enums nextObject]) {
+        if(![manager removeItemAtPath:[crashPath stringByAppendingPathComponent:filename] error:NULL]){
+            success = NO;
+            break;
+        }
     }
+    return success;
 }
 @end

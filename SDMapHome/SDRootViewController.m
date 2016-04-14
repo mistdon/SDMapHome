@@ -38,19 +38,19 @@ static NSString *const menuCellIdentifier = @"menuCellIdentifier";
     //2. set UI
     [self setupUI];
     //3.check out sign status
-    needCheckSignInStatus = NO;
-    
+    needCheckSignInStatus = YES;
+    [SDFileToolClass sd_clearCrashLogs];
     NSArray *array1 = [SDFileToolClass sd_getCrashLogs];
     NSLog(@"count = %ld",array1.count);
-    // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     if (!needCheckSignInStatus) return;
     UIViewController *signInVC = (UIViewController *)[[NSClassFromString(@"SDLoginViewController") alloc] init];
     [self presentViewController:signInVC animated:YES completion:NULL];
