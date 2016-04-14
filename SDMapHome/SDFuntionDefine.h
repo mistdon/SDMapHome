@@ -12,4 +12,6 @@
 #define SCREENWIDTH  [UIScreen mainScreen].bounds.size.width
 #define SCREENHEIGHT [UIScreen mainScreen].bounds.size.height
 
+#define SDUserSignedIn
+
 #endif /* SDFuntionDefine_h */

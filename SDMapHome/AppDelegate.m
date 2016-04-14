@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <JSPatch/JSPatch.h>
 
+#import "SDFileToolClass.h"
 //高德地图KEY
 static NSString *const KGao_De_KEY = @"20fa6f28cd02b0833a568b2ec084425f";
 /**
@@ -34,7 +35,9 @@ static NSString *const KJSPatchKEY = @"1285cb383ce9ea76"; //APP版本1.0
     
     [self configueGao_DeMap];
     
-    [self configueJSPatch];
+//    [self configueJSPatch];
+    
+    [self catchCrashLogs];
     
     return YES;
 }
@@ -73,6 +76,9 @@ static NSString *const KJSPatchKEY = @"1285cb383ce9ea76"; //APP版本1.0
     
 }
 
+/**
+ *  配置JSPatch热修复
+ */
 - (void)configueJSPatch{
 //    [JSPatch startWithAppKey:KJSPatchKEY];
     [JSPatch testScriptInBundle];
@@ -83,5 +89,23 @@ static NSString *const KJSPatchKEY = @"1285cb383ce9ea76"; //APP版本1.0
     [JSPatch setupCallback:^(JPCallbackType type, NSDictionary *data, NSError *error) {
         NSLog(@"data = %@, error = %@",data,error);
     }];
+}
+
+- (void)catchCrashLogs{
+    NSSetUncaughtExceptionHandler(&UncaughtExceptionHandler);
+}
+void UncaughtExceptionHandler(NSException *exception){
+    if (exception ==nil)return;
+    NSArray *array = [exception callStackSymbols];
+    NSString *reason = [exception reason];
+    NSString *name  = [exception name];
+    NSDictionary *dict = @{@"appException":@{@"exceptioncallStachSymbols":array,@"exceptionreason":reason,@"exceptionname":name}};
+    NSLog(@"%@",NSHomeDirectory());
+    
+    if([SDFileToolClass writeCrashFileOnDocumentsException:dict]){
+        NSLog(@"OKKK");
+    }else{
+        NSLog(@"not ok!");
+    };
 }
 @end

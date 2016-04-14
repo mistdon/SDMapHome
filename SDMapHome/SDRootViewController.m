@@ -18,7 +18,9 @@ static NSString *const menuCellIdentifier = @"menuCellIdentifier";
 
 @end
 
-@implementation SDRootViewController
+@implementation SDRootViewController{
+    BOOL needCheckSignInStatus;
+}
 
 #pragma mark - lazy loading
 - (NSMutableArray *)source{
@@ -35,7 +37,11 @@ static NSString *const menuCellIdentifier = @"menuCellIdentifier";
     [self.source addObjectsFromArray:array];
     //2. set UI
     [self setupUI];
+    //3.check out sign status
+    needCheckSignInStatus = NO;
     
+    NSArray *array1 = [SDFileToolClass sd_getCrashLogs];
+    NSLog(@"count = %ld",array1.count);
     // Do any additional setup after loading the view.
 }
 
@@ -43,12 +49,17 @@ static NSString *const menuCellIdentifier = @"menuCellIdentifier";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (!needCheckSignInStatus) return;
+    UIViewController *signInVC = (UIViewController *)[[NSClassFromString(@"SDLoginViewController") alloc] init];
+    [self presentViewController:signInVC animated:YES completion:NULL];
+}
 #pragma mark - setupUI
 
 - (void)setupUI{
     [self.menuTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:menuCellIdentifier];
-    self.menuTableView.tableFooterView = [UIView new];
+     self.menuTableView.tableFooterView = [UIView new];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return  self.source.count;

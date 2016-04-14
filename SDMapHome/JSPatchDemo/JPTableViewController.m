@@ -34,21 +34,19 @@ static NSString *const jpcell = @"jpcellIdentifier";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
     return 3;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"indexPath.row = %ld",(long)indexPath.row);
-    if (self.dataSource.count > indexPath.row) {
+//    if (self.dataSource.count > indexPath.row) {
         NSString *content = self.dataSource[[indexPath row]];  //可能会超出数组范围导致crash
         JPViewController *ctrl = [[JPViewController alloc] initWithContent:content];
         [self.navigationController pushViewController:ctrl animated:YES];
-    }
+//    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
