@@ -8,10 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^SDSignInResponse)(BOOL);
 
 @interface SDLoginViewController : UIViewController
-
-- (void)signInWithUsername:(NSString *)username password:(NSString *)password complete:(SDSignInResponse)completeBlock;
 
 @end

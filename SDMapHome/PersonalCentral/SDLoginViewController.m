@@ -12,6 +12,8 @@
  
  */
 #import "SDLoginViewController.h"
+#import "SDLoginViewModel.h"
+
 
 @interface SDLoginViewController ()
 
@@ -19,6 +21,7 @@
 @property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
 @property (nonatomic, weak) IBOutlet UIButton *signInButton;
 @property (nonatomic,assign) BOOL signedIn;
+@property (nonatomic, strong) SDLoginViewModel *viewModel;
 
 @end
 
@@ -27,103 +30,49 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [[[self.accountTextField rac_textSignal] filter:^BOOL(NSString *text) {
-        return text.length > 3;
-    }] subscribeNext:^(id x) {
-        NSLog(@"x = %@",x);
-    }];
-    
-    [[[[self.passwordTextField rac_textSignal] map:^id(NSString *value) {
-        return @(value.length);
-    }] filter:^BOOL(NSNumber *length) {
-        return [length integerValue] > 3;
-    }] subscribeNext:^(id x) {
-        NSLog(@"x = %@",x);
-    }];
-    
-    RACSignal *validAccountSignal = [[self.accountTextField rac_textSignal] map:^id(NSString *value) {
-        return @([self isValidAccountName:value]);
-    }];
-    RACSignal *validPasswordSignal = [[self.passwordTextField rac_textSignal] map:^id(NSString *value) {
-        return @([self isValidPassword:value]);
-    }];
-    
-    RAC(self.accountTextField,backgroundColor) = [validAccountSignal map:^id(NSNumber *accountValid) {
-        return [accountValid boolValue] ? [UIColor clearColor] : [UIColor yellowColor];
-    }];
-    RAC(self.passwordTextField, backgroundColor) = [validPasswordSignal map:^id(NSNumber *passwordValid) {
-        return [passwordValid boolValue]?[UIColor clearColor]:[UIColor yellowColor];
-    }];
-    
-    
-//    RACSignal *signInSignal = [self.signInButton rac_signalForControlEvents:UIControlEventTouchUpInside];
-//    [signInSignal subscribeNext:^(UIButton *sender) {
-//        NSLog(@"sender = %@",sender.currentTitle);
-//    }];
-    
-    //聚合信号combineLatest
-    RACSignal *signUpAcitveSignal = [RACSignal combineLatest:@[validAccountSignal,validPasswordSignal] reduce:^id(NSNumber *usernameVaild, NSNumber *passwordVaild){
-        return @([usernameVaild boolValue] && [passwordVaild boolValue]);
-    }];
-    
-    [signUpAcitveSignal subscribeNext:^(NSNumber *signUpActice) {
-        self.signInButton.enabled = [signUpActice boolValue];
-    }];
-    
-    [[[[self.signInButton rac_signalForControlEvents:UIControlEventTouchUpInside]
-        doNext:^(id x) {
-            self.signInButton.enabled = NO;
-            
-        }]
-        flattenMap:^id(id value) {
-        return [self signInSignal];
-        }] subscribeNext:^(NSNumber *signedIn) {
-            self.signInButton.enabled = YES;
-            BOOL success = [signedIn boolValue];
-            if (success) {
-            NSLog(@"Sign in successfully");
-            }
-//        NSLog(@"rsult = %@",success);
-    }];
-    
-    
+    [self bindModel];
 }
-- (RACSignal *)signInSignal{
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        [self signInWithUsername:self.accountTextField.text password:self.passwordTextField.text complete:^(BOOL success) {
-            [subscriber sendNext:@(success)];
-            [subscriber sendCompleted];
-        }];
-        return nil;
+
+- (void)bindModel{
+    self.viewModel = [[SDLoginViewModel alloc] init];
+    RAC(self.viewModel, account)  = self.accountTextField.rac_textSignal;
+    RAC(self.viewModel, password) = self.passwordTextField.rac_textSignal;
+    RAC(self.signInButton, enabled) = [self.viewModel signInButtonValid];
+    @weakify(self);
+    
+    RAC(self.accountTextField, backgroundColor) = [self.accountTextField.rac_textSignal map:^id(NSString *value) {
+        return value.length < 6 ? [UIColor yellowColor] : [UIColor clearColor];
+    }];
+    RAC(self.passwordTextField, backgroundColor) = [self.passwordTextField.rac_textSignal map:^id(NSString *value) {
+        return value.length < 6 ? [UIColor yellowColor] : [UIColor clearColor];
+    }];
+    [[[[self.signInButton rac_signalForControlEvents:UIControlEventTouchUpInside] doNext:^(id x) {
+        @strongify(self)
+        self.signInButton.enabled = NO;
+        //show hud
+        [SVProgressHUD showWithStatus:@"Sign in ...."];
+    }]
+    flattenMap:^RACStream *(id value) {
+        return [self.viewModel signInSignal];
+    }]
+    subscribeNext:^(NSNumber *signedIn) {
+        @strongify(self);
+        self.signInButton.enabled = YES;
+        if ([signedIn boolValue]) {
+            //do the next
+            [SVProgressHUD showWithStatus:@"Success"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [SVProgressHUD dismiss];
+//                [self pre]
+            });
+        }
     }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (BOOL)isValidAccountName:(NSString *)account{
-    return account.length > 5;
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
 }
-- (BOOL)isValidPassword:(NSString *)password{
-    return password.length > 5;
-}
-- (void)signInWithUsername:(NSString *)username password:(NSString *)password complete:(SDSignInResponse)completeBlock{
-    double delayInSeconds = 2.0f;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^{
-        BOOL success = [username isEqualToString:@"shendong"] && [password isEqualToString:@"123456"];
-        completeBlock(success);
-    });
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

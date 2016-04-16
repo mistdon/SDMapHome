@@ -12,6 +12,7 @@ PODS:
     - CocoaLumberjack/Default
   - DateTools (1.7.0)
   - Masonry (1.0.0)
+  - MJExtension (3.0.10)
   - ReactiveCocoa (4.0.4-alpha-4):
     - ReactiveCocoa/UI (= 4.0.4-alpha-4)
     - Result (~> 1.0)
@@ -27,6 +28,7 @@ PODS:
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
+  - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
   - AMap3DMap
@@ -35,8 +37,10 @@ DEPENDENCIES:
   - CocoaLumberjack
   - DateTools
   - Masonry
+  - MJExtension
   - ReactiveCocoa (~> 4.0.4-alpha-1)
   - SDWebImage
+  - SVProgressHUD
 
 SPEC CHECKSUMS:
   AMap3DMap: 6315b7489cb60b1c47bb51169b409c20efa5f527
@@ -45,8 +49,10 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
+  MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   ReactiveCocoa: e459ea92099447802df20c4735e31e8139b06094
   Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
 COCOAPODS: 0.39.0

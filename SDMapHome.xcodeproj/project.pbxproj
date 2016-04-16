@@ -23,6 +23,10 @@
 		3B1A4EBC1CB560DA0075D602 /* SDMapSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1A4EBA1CB560DA0075D602 /* SDMapSearchViewController.m */; };
 		3B1A4EBD1CB560DA0075D602 /* SDMapSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B1A4EBB1CB560DA0075D602 /* SDMapSearchViewController.xib */; };
 		3B216A201CBFE7D900CFC487 /* SDLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216A1F1CBFE7D900CFC487 /* SDLoginManager.m */; };
+		3B3481B51CC211D700756E01 /* SDToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3481B41CC211D700756E01 /* SDToolView.m */; };
+		3B3481BA1CC2190700756E01 /* SDLoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3481B91CC2190700756E01 /* SDLoginViewModel.m */; };
+		3B3481BF1CC235FE00756E01 /* SDPersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3481BE1CC235FE00756E01 /* SDPersonalInfoViewController.swift */; };
+		3B3481C11CC236C600756E01 /* SDSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3481C01CC236C600756E01 /* SDSettingViewController.swift */; };
 		3B40618D1CB625E800A607FF /* SDSearchResutlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B40618C1CB625E800A607FF /* SDSearchResutlTableViewCell.m */; };
 		3B6181CD1CBF525500BD0203 /* SDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6181CB1CBF525500BD0203 /* SDLoginViewController.m */; };
 		3B6181CE1CBF525500BD0203 /* SDLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B6181CC1CBF525500BD0203 /* SDLoginViewController.xib */; };
@@ -63,6 +67,12 @@
 		3B1A4EBB1CB560DA0075D602 /* SDMapSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDMapSearchViewController.xib; sourceTree = "<group>"; };
 		3B216A1E1CBFE7D900CFC487 /* SDLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLoginManager.h; sourceTree = "<group>"; };
 		3B216A1F1CBFE7D900CFC487 /* SDLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLoginManager.m; sourceTree = "<group>"; };
+		3B3481B31CC211D700756E01 /* SDToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDToolView.h; sourceTree = "<group>"; };
+		3B3481B41CC211D700756E01 /* SDToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDToolView.m; sourceTree = "<group>"; };
+		3B3481B81CC2190700756E01 /* SDLoginViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLoginViewModel.h; sourceTree = "<group>"; };
+		3B3481B91CC2190700756E01 /* SDLoginViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLoginViewModel.m; sourceTree = "<group>"; };
+		3B3481BE1CC235FE00756E01 /* SDPersonalInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDPersonalInfoViewController.swift; sourceTree = "<group>"; };
+		3B3481C01CC236C600756E01 /* SDSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSettingViewController.swift; sourceTree = "<group>"; };
 		3B40618B1CB625E800A607FF /* SDSearchResutlTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSearchResutlTableViewCell.h; sourceTree = "<group>"; };
 		3B40618C1CB625E800A607FF /* SDSearchResutlTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSearchResutlTableViewCell.m; sourceTree = "<group>"; };
 		3B6181CA1CBF525500BD0203 /* SDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLoginViewController.h; sourceTree = "<group>"; };
@@ -207,6 +217,24 @@
 			path = "MVVM+RAC";
 			sourceTree = "<group>";
 		};
+		3B3481B61CC218F000756E01 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B3481BE1CC235FE00756E01 /* SDPersonalInfoViewController.swift */,
+				3B3481C01CC236C600756E01 /* SDSettingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B3481B71CC218F000756E01 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3B3481B81CC2190700756E01 /* SDLoginViewModel.h */,
+				3B3481B91CC2190700756E01 /* SDLoginViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		3B6C910E1CBE120E001094BC /* JSPatchDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +249,8 @@
 		3B6C91131CBE120E001094BC /* PersonalCentral */ = {
 			isa = PBXGroup;
 			children = (
+				3B3481B61CC218F000756E01 /* Controller */,
+				3B3481B71CC218F000756E01 /* ViewModel */,
 				3B6181CA1CBF525500BD0203 /* SDLoginViewController.h */,
 				3B6181CB1CBF525500BD0203 /* SDLoginViewController.m */,
 				3B6181CC1CBF525500BD0203 /* SDLoginViewController.xib */,
@@ -241,6 +271,8 @@
 			children = (
 				3B6C91221CBE132B001094BC /* SDFileToolClass.h */,
 				3B6C91231CBE132B001094BC /* SDFileToolClass.m */,
+				3B3481B31CC211D700756E01 /* SDToolView.h */,
+				3B3481B41CC211D700756E01 /* SDToolView.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -413,6 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B3481BA1CC2190700756E01 /* SDLoginViewModel.m in Sources */,
 				3B1A4EBC1CB560DA0075D602 /* SDMapSearchViewController.m in Sources */,
 				3B6181CD1CBF525500BD0203 /* SDLoginViewController.m in Sources */,
 				3B216A201CBFE7D900CFC487 /* SDLoginManager.m in Sources */,
@@ -422,10 +455,13 @@
 				3B03B2811CB3B8F300B6052B /* AppDelegate.m in Sources */,
 				3B10F1921CB50128001F52A0 /* SDMapChoiceView.m in Sources */,
 				3B6C91151CBE120E001094BC /* JPViewController.m in Sources */,
+				3B3481B51CC211D700756E01 /* SDToolView.m in Sources */,
 				3B03B27E1CB3B8F300B6052B /* main.m in Sources */,
+				3B3481C11CC236C600756E01 /* SDSettingViewController.swift in Sources */,
 				3B03B29E1CB3CEEE00B6052B /* SDRootViewController.m in Sources */,
 				3B6C91241CBE132B001094BC /* SDFileToolClass.m in Sources */,
 				3B40618D1CB625E800A607FF /* SDSearchResutlTableViewCell.m in Sources */,
+				3B3481BF1CC235FE00756E01 /* SDPersonalInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +580,8 @@
 			baseConfigurationReference = 1A3C480389EA15A2EA2A3801 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jianye Zhai (GEZJKDGQ9H)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jianye Zhai (GEZJKDGQ9H)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -556,6 +594,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Allen.SDMapHome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1352be60-7796-4a95-aec0-6d3c8b142c80";
+				SWIFT_OBJC_BRIDGING_HEADER = "SDMapHome/PersonalCentral/Controller/SDMapHome-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -564,6 +604,8 @@
 			baseConfigurationReference = 104CC107AC4D736DBA8F7773 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jianye Zhai (GEZJKDGQ9H)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jianye Zhai (GEZJKDGQ9H)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -576,6 +618,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Allen.SDMapHome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1352be60-7796-4a95-aec0-6d3c8b142c80";
+				SWIFT_OBJC_BRIDGING_HEADER = "SDMapHome/PersonalCentral/Controller/SDMapHome-Bridging-Header.h";
 			};
 			name = Release;
 		};

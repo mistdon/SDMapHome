@@ -14,9 +14,12 @@ pod 'AMapLocation' #定位SDK
 pod 'Masonry'         #约束
 pod 'CocoaLumberjack' #log
 pod 'DateTools'
+pod 'MJExtension'
 
 use_frameworks!
 pod 'ReactiveCocoa','~>4.0.4-alpha-1'
+
 pod 'SDWebImage'
+pod 'SVProgressHUD'
 
 

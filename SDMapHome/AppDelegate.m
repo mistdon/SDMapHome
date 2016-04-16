@@ -35,9 +35,6 @@ static NSString *const KJSPatchKEY = @"1285cb383ce9ea76"; //APP版本1.0
     NSLog(@"homeDirectory = %@",NSHomeDirectory());
     [self configueGao_DeMap];
     
-    NSLog(@"x = %d",33/8);
-    NSLog(@"y = %d",15%(33/8));
-    
 //    [self configueJSPatch];
     
     [self catchCrashLogs];
@@ -106,9 +103,7 @@ void UncaughtExceptionHandler(NSException *exception){
     NSLog(@"%@",NSHomeDirectory());
     
     if([SDFileToolClass writeCrashFileOnDocumentsException:dict]){
-        NSLog(@"OKKK");
-    }else{
-        NSLog(@"not ok!");
-    };
+        NSLog(@"Crash logs write ok!");
+    }
 }
 @end
