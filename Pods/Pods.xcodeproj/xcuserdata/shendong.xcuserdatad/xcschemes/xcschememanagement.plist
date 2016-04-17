@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>CocoaLumberjack.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -19,12 +29,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-SDMapHome.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,17 +67,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>043F55FD7768D4AC5D1050F246EDDD65</key>
+		<key>1797894135652242B18493B1C4F2C894</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>61AA99507061EEA28387503097F77322</key>
+		<key>1C3436CEA5C3D39764C5F54374794ECB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7044E5EF7872B300C484F1B518E711C4</key>
+		<key>6847254D016329D4A531D34ED2B6DF81</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6A1B36E192EFD9DC5A520CC377717C58</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,12 +97,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>83DBBBD65C61CE889CC9478314F8D8D9</key>
+		<key>8A2E8FED01C8A6BC8ADFCF3C3B78368F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8A2E8FED01C8A6BC8ADFCF3C3B78368F</key>
+		<key>9D993E17AB4C64BF8803874178C8EFFD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,12 +112,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>ADA735B30C620F75B4B47C2D01DF4B3E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>AFEDA8059B169E4068B6DCC4D2F0B0E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DAD516F47289689100B56059B9222077</key>
+		<key>F9DB11C638BADC1D5C151C08DC93EBDD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

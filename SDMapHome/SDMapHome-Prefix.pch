@@ -21,6 +21,9 @@
 #import "Masonry.h"
 #import "DateTools.h"
 #import "SVProgressHUD.h"
+#import "AFNetworking.h"
+#import <SystemConfiguration/SystemConfiguration.h>
+
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "SDFuntionDefine.h"

@@ -5,6 +5,8 @@
 	<key>SDMapHomeRootClass</key>
 	<array>
 		<dict>
+			<key>class_runtype</key>
+			<string>OC</string>
 			<key>class_icon</key>
 			<string></string>
 			<key>class_functionName</key>
@@ -13,6 +15,8 @@
 			<string>SDMapViewController</string>
 		</dict>
 		<dict>
+			<key>class_runtype</key>
+			<string>Swift</string>
 			<key>class_icon</key>
 			<string></string>
 			<key>class_functionName</key>
@@ -35,6 +39,16 @@
 			<string>MVVM+RAC</string>
 			<key>class_destinationViewController</key>
 			<string></string>
+		</dict>
+		<dict>
+            <key>class_runtype</key>
+            <string>Swift</string>
+			<key>class_icon</key>
+			<string></string>
+			<key>class_functionName</key>
+			<string>Libarary</string>
+			<key>class_destinationViewController</key>
+			<string>LibraryViewController</string>
 		</dict>
 	</array>
 </dict>

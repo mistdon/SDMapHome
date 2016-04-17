@@ -9,6 +9,7 @@
 #import "SDRootViewController.h"
 #import "SDFileToolClass.h"
 #import <objc/runtime.h>
+#import "SDMapHome-swift.h"
 
 static NSString *const menuCellIdentifier = @"menuCellIdentifier";
 
@@ -38,11 +39,11 @@ static NSString *const menuCellIdentifier = @"menuCellIdentifier";
     //2. set UI
     [self setupUI];
     //3.check out sign status
-    needCheckSignInStatus = YES;
-    [SDFileToolClass sd_clearCrashLogs];
-    NSArray *array1 = [SDFileToolClass sd_getCrashLogs];
-    NSLog(@"count = %ld",array1.count);
     
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:SDUserLogedIn] || ![[NSUserDefaults standardUserDefaults] boolForKey:SDUserLogedIn]){
+        UIViewController *signInVC = (UIViewController *)[[NSClassFromString(@"SDLoginViewController") alloc] init];
+        [self presentViewController:signInVC animated:YES completion:NULL];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,15 +52,17 @@ static NSString *const menuCellIdentifier = @"menuCellIdentifier";
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if (!needCheckSignInStatus) return;
-    UIViewController *signInVC = (UIViewController *)[[NSClassFromString(@"SDLoginViewController") alloc] init];
-    [self presentViewController:signInVC animated:YES completion:NULL];
+
 }
 #pragma mark - setupUI
 
 - (void)setupUI{
     [self.menuTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:menuCellIdentifier];
-     self.menuTableView.tableFooterView = [UIView new];
+    UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(shareButtonClicked:)];
+    self.navigationItem.leftBarButtonItem = left;
+}
+- (void)shareButtonClicked:(UIBarButtonItem *)sender{
+    NSLog(@"share");
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return  self.source.count;
@@ -74,11 +77,17 @@ static NSString *const menuCellIdentifier = @"menuCellIdentifier";
     NSDictionary *dict = self.source[indexPath.row];
     NSString *destVC = [dict objectForKey:@"class_destinationViewController"];
     if (destVC.length < 1) return;  //当目标ViewController为空时,返回
-    Class class                       = NSClassFromString(destVC);
-    UIViewController *instance        = [[class alloc] init];
-    instance.title                    = dict[@"class_functionName"];
-    instance.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:instance animated:YES];
+    if ([[dict objectForKey:@"class_runtype"] isEqualToString:@"OC"]) {
+        Class class                       = NSClassFromString(destVC);
+        UIViewController *instance        = [[class alloc] init];
+        instance.title                    = dict[@"class_functionName"];
+        instance.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:instance animated:YES];
+    }else{
+        LibraryViewController *library = [[LibraryViewController alloc] init];
+        library.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:library animated:YES];
+    }
 }
 
 @end

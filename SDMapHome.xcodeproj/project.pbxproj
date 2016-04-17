@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3153B3E90F8675E49F5604A4 /* Pods_SDMapHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 750AB9652F6525ADEC32EA19 /* Pods_SDMapHome.framework */; };
 		3B03B27E1CB3B8F300B6052B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B03B27D1CB3B8F300B6052B /* main.m */; };
 		3B03B2811CB3B8F300B6052B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B03B2801CB3B8F300B6052B /* AppDelegate.m */; };
 		3B03B2871CB3B8F300B6052B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B03B2851CB3B8F300B6052B /* Main.storyboard */; };
@@ -25,8 +26,12 @@
 		3B216A201CBFE7D900CFC487 /* SDLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B216A1F1CBFE7D900CFC487 /* SDLoginManager.m */; };
 		3B3481B51CC211D700756E01 /* SDToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3481B41CC211D700756E01 /* SDToolView.m */; };
 		3B3481BA1CC2190700756E01 /* SDLoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3481B91CC2190700756E01 /* SDLoginViewModel.m */; };
-		3B3481BF1CC235FE00756E01 /* SDPersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3481BE1CC235FE00756E01 /* SDPersonalInfoViewController.swift */; };
-		3B3481C11CC236C600756E01 /* SDSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3481C01CC236C600756E01 /* SDSettingViewController.swift */; };
+		3B3632741CC3341D004E2200 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B3632731CC3341D004E2200 /* SystemConfiguration.framework */; };
+		3B3632761CC34295004E2200 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3632751CC34295004E2200 /* Book.swift */; };
+		3B3632791CC3BA81004E2200 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3632771CC3BA81004E2200 /* BookCell.swift */; };
+		3B36327A1CC3BA81004E2200 /* BookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B3632781CC3BA81004E2200 /* BookCell.xib */; };
+		3B36327C1CC3CB9A004E2200 /* BookExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B36327B1CC3CB9A004E2200 /* BookExtension.swift */; };
+		3B36327F1CC3DCA0004E2200 /* UITableView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B36327E1CC3DCA0004E2200 /* UITableView+MJRefresh.m */; };
 		3B40618D1CB625E800A607FF /* SDSearchResutlTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B40618C1CB625E800A607FF /* SDSearchResutlTableViewCell.m */; };
 		3B6181CD1CBF525500BD0203 /* SDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6181CB1CBF525500BD0203 /* SDLoginViewController.m */; };
 		3B6181CE1CBF525500BD0203 /* SDLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B6181CC1CBF525500BD0203 /* SDLoginViewController.xib */; };
@@ -34,13 +39,19 @@
 		3B6C91151CBE120E001094BC /* JPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C91121CBE120E001094BC /* JPViewController.m */; };
 		3B6C91201CBE1290001094BC /* SDRootClass.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B6C911F1CBE1290001094BC /* SDRootClass.plist */; };
 		3B6C91241CBE132B001094BC /* SDFileToolClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6C91231CBE132B001094BC /* SDFileToolClass.m */; };
+		3B80A41B1CC268F200534E1A /* SDPersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B80A41A1CC268F200534E1A /* SDPersonalInfoViewController.swift */; };
+		3B80A41F1CC26A6C00534E1A /* SDSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B80A41D1CC26A6C00534E1A /* SDSettingViewController.swift */; };
+		3B80A4201CC26A6C00534E1A /* SDSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B80A41E1CC26A6C00534E1A /* SDSettingViewController.xib */; };
+		3B80A4221CC26BCE00534E1A /* SDTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B80A4211CC26BCE00534E1A /* SDTabBarViewController.swift */; };
+		3B80A4271CC2787C00534E1A /* settingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B80A4261CC2787C00534E1A /* settingViewModel.swift */; };
+		3B80A4301CC2838E00534E1A /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B80A42E1CC2838E00534E1A /* LibraryViewController.swift */; };
+		3B80A4311CC2838E00534E1A /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B80A42F1CC2838E00534E1A /* LibraryViewController.xib */; };
+		3B80A4331CC2900400534E1A /* NetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B80A4321CC2900400534E1A /* NetManager.swift */; };
 		3B82B3651CB602F800195D70 /* SDSNumerousView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B82B3641CB602F800195D70 /* SDSNumerousView.m */; };
-		4C62FA8B6355C9FA4CA87362 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF0E6D9FCF0CBBB7C8C25D2 /* Pods.framework */; };
+		3B8565C71CC31DC7008BB332 /* HTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8565C61CC31DC7008BB332 /* HTTPManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		104CC107AC4D736DBA8F7773 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		1A3C480389EA15A2EA2A3801 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3B03B2791CB3B8F300B6052B /* SDMapHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDMapHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B03B27D1CB3B8F300B6052B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3B03B27F1CB3B8F300B6052B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -71,8 +82,13 @@
 		3B3481B41CC211D700756E01 /* SDToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDToolView.m; sourceTree = "<group>"; };
 		3B3481B81CC2190700756E01 /* SDLoginViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLoginViewModel.h; sourceTree = "<group>"; };
 		3B3481B91CC2190700756E01 /* SDLoginViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDLoginViewModel.m; sourceTree = "<group>"; };
-		3B3481BE1CC235FE00756E01 /* SDPersonalInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDPersonalInfoViewController.swift; sourceTree = "<group>"; };
-		3B3481C01CC236C600756E01 /* SDSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSettingViewController.swift; sourceTree = "<group>"; };
+		3B3632731CC3341D004E2200 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3B3632751CC34295004E2200 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		3B3632771CC3BA81004E2200 /* BookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		3B3632781CC3BA81004E2200 /* BookCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookCell.xib; sourceTree = "<group>"; };
+		3B36327B1CC3CB9A004E2200 /* BookExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookExtension.swift; sourceTree = "<group>"; };
+		3B36327D1CC3DCA0004E2200 /* UITableView+MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+MJRefresh.h"; sourceTree = "<group>"; };
+		3B36327E1CC3DCA0004E2200 /* UITableView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+MJRefresh.m"; sourceTree = "<group>"; };
 		3B40618B1CB625E800A607FF /* SDSearchResutlTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSearchResutlTableViewCell.h; sourceTree = "<group>"; };
 		3B40618C1CB625E800A607FF /* SDSearchResutlTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSearchResutlTableViewCell.m; sourceTree = "<group>"; };
 		3B6181CA1CBF525500BD0203 /* SDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDLoginViewController.h; sourceTree = "<group>"; };
@@ -85,10 +101,22 @@
 		3B6C911F1CBE1290001094BC /* SDRootClass.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SDRootClass.plist; sourceTree = "<group>"; };
 		3B6C91221CBE132B001094BC /* SDFileToolClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDFileToolClass.h; sourceTree = "<group>"; };
 		3B6C91231CBE132B001094BC /* SDFileToolClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDFileToolClass.m; sourceTree = "<group>"; };
+		3B80A41A1CC268F200534E1A /* SDPersonalInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDPersonalInfoViewController.swift; sourceTree = "<group>"; };
+		3B80A41C1CC2691F00534E1A /* SDMapHome-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SDMapHome-Bridging-Header.h"; sourceTree = "<group>"; };
+		3B80A41D1CC26A6C00534E1A /* SDSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSettingViewController.swift; sourceTree = "<group>"; };
+		3B80A41E1CC26A6C00534E1A /* SDSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSettingViewController.xib; sourceTree = "<group>"; };
+		3B80A4211CC26BCE00534E1A /* SDTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDTabBarViewController.swift; sourceTree = "<group>"; };
+		3B80A4261CC2787C00534E1A /* settingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingViewModel.swift; sourceTree = "<group>"; };
+		3B80A42E1CC2838E00534E1A /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		3B80A42F1CC2838E00534E1A /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
+		3B80A4321CC2900400534E1A /* NetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetManager.swift; sourceTree = "<group>"; };
 		3B82B3631CB602F800195D70 /* SDSNumerousView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDSNumerousView.h; sourceTree = "<group>"; };
 		3B82B3641CB602F800195D70 /* SDSNumerousView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDSNumerousView.m; sourceTree = "<group>"; };
-		5AF0E6D9FCF0CBBB7C8C25D2 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B8565C51CC31DC7008BB332 /* HTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPManager.h; sourceTree = "<group>"; };
+		3B8565C61CC31DC7008BB332 /* HTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPManager.m; sourceTree = "<group>"; };
+		70074C039E514BED3403EDDE /* Pods-SDMapHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDMapHome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SDMapHome/Pods-SDMapHome.debug.xcconfig"; sourceTree = "<group>"; };
 		750AB9652F6525ADEC32EA19 /* Pods_SDMapHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDMapHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81A5CEF711C3B83A35F3D681 /* Pods-SDMapHome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDMapHome.release.xcconfig"; path = "Pods/Target Support Files/Pods-SDMapHome/Pods-SDMapHome.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,10 +124,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B3632741CC3341D004E2200 /* SystemConfiguration.framework in Frameworks */,
 				3B10F1841CB4D806001F52A0 /* libz.tbd in Frameworks */,
 				3B10F1811CB4D5B4001F52A0 /* JavaScriptCore.framework in Frameworks */,
 				3B10F17F1CB4D494001F52A0 /* JSPatch.framework in Frameworks */,
-				4C62FA8B6355C9FA4CA87362 /* Pods.framework in Frameworks */,
+				3153B3E90F8675E49F5604A4 /* Pods_SDMapHome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +171,7 @@
 				3B03B2801CB3B8F300B6052B /* AppDelegate.m */,
 				3B03B29C1CB3CEEE00B6052B /* SDRootViewController.h */,
 				3B03B29D1CB3CEEE00B6052B /* SDRootViewController.m */,
+				3B80A4211CC26BCE00534E1A /* SDTabBarViewController.swift */,
 				3B10F1901CB50128001F52A0 /* SDMapChoiceView.h */,
 				3B10F1911CB50128001F52A0 /* SDMapChoiceView.m */,
 				3B03B2851CB3B8F300B6052B /* Main.storyboard */,
@@ -159,6 +189,7 @@
 				3B03B27D1CB3B8F300B6052B /* main.m */,
 				3B03B2931CB3CD4B00B6052B /* SDMapHome-Prefix.pch */,
 				3B10F1931CB5147A001F52A0 /* SDFuntionDefine.h */,
+				3B80A41C1CC2691F00534E1A /* SDMapHome-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -220,8 +251,10 @@
 		3B3481B61CC218F000756E01 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				3B3481BE1CC235FE00756E01 /* SDPersonalInfoViewController.swift */,
-				3B3481C01CC236C600756E01 /* SDSettingViewController.swift */,
+				3B80A41A1CC268F200534E1A /* SDPersonalInfoViewController.swift */,
+				3B80A41D1CC26A6C00534E1A /* SDSettingViewController.swift */,
+				3B80A4261CC2787C00534E1A /* settingViewModel.swift */,
+				3B80A41E1CC26A6C00534E1A /* SDSettingViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -273,13 +306,73 @@
 				3B6C91231CBE132B001094BC /* SDFileToolClass.m */,
 				3B3481B31CC211D700756E01 /* SDToolView.h */,
 				3B3481B41CC211D700756E01 /* SDToolView.m */,
+				3B80A4321CC2900400534E1A /* NetManager.swift */,
+				3B36327B1CC3CB9A004E2200 /* BookExtension.swift */,
+				3B8565C51CC31DC7008BB332 /* HTTPManager.h */,
+				3B8565C61CC31DC7008BB332 /* HTTPManager.m */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		3B80A4231CC26F4400534E1A /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Macro;
+			sourceTree = "<group>";
+		};
+		3B80A4281CC2831000534E1A /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				3B80A42D1CC2835D00534E1A /* View */,
+				3B80A42C1CC2835500534E1A /* Model */,
+				3B80A42B1CC2834700534E1A /* Controller */,
+				3B80A4291CC2833400534E1A /* ViewModel */,
+			);
+			name = Library;
+			path = ../Library;
+			sourceTree = "<group>";
+		};
+		3B80A4291CC2833400534E1A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		3B80A42B1CC2834700534E1A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B80A42E1CC2838E00534E1A /* LibraryViewController.swift */,
+				3B80A42F1CC2838E00534E1A /* LibraryViewController.xib */,
+				3B3632771CC3BA81004E2200 /* BookCell.swift */,
+				3B3632781CC3BA81004E2200 /* BookCell.xib */,
+				3B36327D1CC3DCA0004E2200 /* UITableView+MJRefresh.h */,
+				3B36327E1CC3DCA0004E2200 /* UITableView+MJRefresh.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		3B80A42C1CC2835500534E1A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B3632751CC34295004E2200 /* Book.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		3B80A42D1CC2835D00534E1A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		3B82B3611CB6027700195D70 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				3B80A4281CC2831000534E1A /* Library */,
+				3B80A4231CC26F4400534E1A /* Macro */,
 				3B82B3621CB6027700195D70 /* CommonView */,
 			);
 			path = Class;
@@ -297,10 +390,10 @@
 		5207A5457D8008812998EDCE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B3632731CC3341D004E2200 /* SystemConfiguration.framework */,
 				3B10F1821CB4D5D1001F52A0 /* libz.tbd */,
 				3B10F1801CB4D5B4001F52A0 /* JavaScriptCore.framework */,
 				750AB9652F6525ADEC32EA19 /* Pods_SDMapHome.framework */,
-				5AF0E6D9FCF0CBBB7C8C25D2 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -308,8 +401,8 @@
 		D863FFAE8225219EFBDAE090 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1A3C480389EA15A2EA2A3801 /* Pods.debug.xcconfig */,
-				104CC107AC4D736DBA8F7773 /* Pods.release.xcconfig */,
+				70074C039E514BED3403EDDE /* Pods-SDMapHome.debug.xcconfig */,
+				81A5CEF711C3B83A35F3D681 /* Pods-SDMapHome.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -380,13 +473,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B03B29B1CB3CE5300B6052B /* SDMapViewController.xib in Resources */,
+				3B36327A1CC3BA81004E2200 /* BookCell.xib in Resources */,
 				3B6181CE1CBF525500BD0203 /* SDLoginViewController.xib in Resources */,
 				3B03B28C1CB3B8F300B6052B /* LaunchScreen.storyboard in Resources */,
 				3B03B2891CB3B8F300B6052B /* Assets.xcassets in Resources */,
 				3B03B2871CB3B8F300B6052B /* Main.storyboard in Resources */,
 				3B6C91201CBE1290001094BC /* SDRootClass.plist in Resources */,
+				3B80A4311CC2838E00534E1A /* LibraryViewController.xib in Resources */,
 				3B1A4EBD1CB560DA0075D602 /* SDMapSearchViewController.xib in Resources */,
 				3B10F18C1CB4F379001F52A0 /* main.js in Resources */,
+				3B80A4201CC26A6C00534E1A /* SDSettingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,7 +501,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDMapHome/Pods-SDMapHome-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B11A5ED99FE0C6EE50642B5D /* Check Pods Manifest.lock */ = {
@@ -435,7 +531,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SDMapHome/Pods-SDMapHome-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -445,23 +541,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B36327C1CC3CB9A004E2200 /* BookExtension.swift in Sources */,
 				3B3481BA1CC2190700756E01 /* SDLoginViewModel.m in Sources */,
+				3B36327F1CC3DCA0004E2200 /* UITableView+MJRefresh.m in Sources */,
+				3B80A4221CC26BCE00534E1A /* SDTabBarViewController.swift in Sources */,
 				3B1A4EBC1CB560DA0075D602 /* SDMapSearchViewController.m in Sources */,
 				3B6181CD1CBF525500BD0203 /* SDLoginViewController.m in Sources */,
 				3B216A201CBFE7D900CFC487 /* SDLoginManager.m in Sources */,
 				3B6C91141CBE120E001094BC /* JPTableViewController.m in Sources */,
+				3B80A4301CC2838E00534E1A /* LibraryViewController.swift in Sources */,
+				3B80A4331CC2900400534E1A /* NetManager.swift in Sources */,
+				3B3632761CC34295004E2200 /* Book.swift in Sources */,
 				3B82B3651CB602F800195D70 /* SDSNumerousView.m in Sources */,
 				3B03B29A1CB3CE5300B6052B /* SDMapViewController.m in Sources */,
 				3B03B2811CB3B8F300B6052B /* AppDelegate.m in Sources */,
+				3B3632791CC3BA81004E2200 /* BookCell.swift in Sources */,
 				3B10F1921CB50128001F52A0 /* SDMapChoiceView.m in Sources */,
 				3B6C91151CBE120E001094BC /* JPViewController.m in Sources */,
 				3B3481B51CC211D700756E01 /* SDToolView.m in Sources */,
 				3B03B27E1CB3B8F300B6052B /* main.m in Sources */,
-				3B3481C11CC236C600756E01 /* SDSettingViewController.swift in Sources */,
+				3B80A41F1CC26A6C00534E1A /* SDSettingViewController.swift in Sources */,
 				3B03B29E1CB3CEEE00B6052B /* SDRootViewController.m in Sources */,
 				3B6C91241CBE132B001094BC /* SDFileToolClass.m in Sources */,
+				3B80A4271CC2787C00534E1A /* settingViewModel.swift in Sources */,
+				3B8565C71CC31DC7008BB332 /* HTTPManager.m in Sources */,
 				3B40618D1CB625E800A607FF /* SDSearchResutlTableViewCell.m in Sources */,
-				3B3481BF1CC235FE00756E01 /* SDPersonalInfoViewController.swift in Sources */,
+				3B80A41B1CC268F200534E1A /* SDPersonalInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,8 +609,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jianye Zhai (GEZJKDGQ9H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jianye Zhai (GEZJKDGQ9H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: momo13014@163.com (X7LJWVEX7N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: momo13014@163.com (X7LJWVEX7N)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -529,7 +634,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "1352be60-7796-4a95-aec0-6d3c8b142c80";
+				PROVISIONING_PROFILE = "b8adffb7-1c3f-4779-8ee6-7ae4a7cda3c9";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -551,8 +656,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jianye Zhai (GEZJKDGQ9H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jianye Zhai (GEZJKDGQ9H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: momo13014@163.com (X7LJWVEX7N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: momo13014@163.com (X7LJWVEX7N)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -569,7 +674,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "1352be60-7796-4a95-aec0-6d3c8b142c80";
+				PROVISIONING_PROFILE = "b8adffb7-1c3f-4779-8ee6-7ae4a7cda3c9";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -577,13 +682,13 @@
 		};
 		3B03B2911CB3B8F300B6052B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A3C480389EA15A2EA2A3801 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 70074C039E514BED3403EDDE /* Pods-SDMapHome.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jianye Zhai (GEZJKDGQ9H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jianye Zhai (GEZJKDGQ9H)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: momo13014@163.com (X7LJWVEX7N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: momo13014@163.com (X7LJWVEX7N)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SDMapHome/SDK",
@@ -593,21 +698,21 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Allen.SDMapHome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1352be60-7796-4a95-aec0-6d3c8b142c80";
-				SWIFT_OBJC_BRIDGING_HEADER = "SDMapHome/PersonalCentral/Controller/SDMapHome-Bridging-Header.h";
+				PROVISIONING_PROFILE = "b8adffb7-1c3f-4779-8ee6-7ae4a7cda3c9";
+				SWIFT_OBJC_BRIDGING_HEADER = "SDMapHome/SDMapHome-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		3B03B2921CB3B8F300B6052B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 104CC107AC4D736DBA8F7773 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 81A5CEF711C3B83A35F3D681 /* Pods-SDMapHome.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jianye Zhai (GEZJKDGQ9H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jianye Zhai (GEZJKDGQ9H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: momo13014@163.com (X7LJWVEX7N)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SDMapHome/SDK",
@@ -617,8 +722,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Allen.SDMapHome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1352be60-7796-4a95-aec0-6d3c8b142c80";
-				SWIFT_OBJC_BRIDGING_HEADER = "SDMapHome/PersonalCentral/Controller/SDMapHome-Bridging-Header.h";
+				PROVISIONING_PROFILE = "b8adffb7-1c3f-4779-8ee6-7ae4a7cda3c9";
+				SWIFT_OBJC_BRIDGING_HEADER = "SDMapHome/SDMapHome-Bridging-Header.h";
 			};
 			name = Release;
 		};

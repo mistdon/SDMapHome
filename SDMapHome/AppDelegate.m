@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <JSPatch/JSPatch.h>
+#import "AFNetworkActivityIndicatorManager.h"
 
 #import "SDFileToolClass.h"
 //高德地图KEY
@@ -36,6 +37,7 @@ static NSString *const KJSPatchKEY = @"1285cb383ce9ea76"; //APP版本1.0
     [self configueGao_DeMap];
     
 //    [self configueJSPatch];
+    [self configureNetwork];
     
     [self catchCrashLogs];
     
@@ -88,6 +90,17 @@ static NSString *const KJSPatchKEY = @"1285cb383ce9ea76"; //APP版本1.0
     }];
     [JSPatch setupCallback:^(JPCallbackType type, NSDictionary *data, NSError *error) {
         NSLog(@"data = %@, error = %@",data,error);
+    }];
+}
+- (void)configureNetwork{
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    
+    AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager sharedManager];
+    [reachabilityManager startMonitoring];
+
+    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        NSLog(@"Current network = %@",[[AFNetworkReachabilityManager sharedManager] localizedNetworkReachabilityStatusString]);
+        [[NSNotificationCenter defaultCenter] postNotificationName:AFNetworkingReachabilityDidChangeNotification object:nil];
     }];
 }
 
