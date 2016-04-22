@@ -25,6 +25,9 @@ pod 'SDWebImage'
 
 pod 'SVProgressHUD'
 pod 'AFNetworking' #OC
-pod 'Alamofire'  #swift
+#pod 'Alamofire'  #swift
+pod 'pop', '~> 1.0'
 
+
+link_with  ['SDMapHome', 'SDMapHomeTests']
 end

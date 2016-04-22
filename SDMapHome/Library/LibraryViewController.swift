@@ -27,30 +27,12 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         super.viewDidLoad()
         title = "Library"
         self.books = []
-//        tableView.headerBeginRefresh()
         addHeaderAndFooterRefresh()
         tableView.headerBeginRefresh()
         let nib = UINib.init(nibName: "BookCell", bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: identifierBookCell)
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
-//        NetManager.GET(URLString, parameters: ["tag":tag,"start":0,"count":10], showHUD: true, success: { (responseObject) in
-//            self.books = []
-//            if let dict = responseObject as? [String:NSObject],array = dict["books"] as? [[String:NSObject]]{
-//                for dict in array {
-//                    self.books.append(Book(dict: dict))
-//                }
-//                self.tableView.reloadData()
-//            }
-//            print(self.books.count)
-//            
-//            }) { (eror) in
-//                print(eror)
-//        }
-//        tableView.estimatedRowHeight = 100
-//        tableView.rowHeight = UITableViewAutomaticDimension
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,7 +52,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         tableView.headerAddMJRefresh { 
             self.tableView.footerResetNoMoreData()
             NetManager.GET(self.URLString, parameters: ["tag":self.tag,"start":self.page,"count":self.pagesize], showHUD: false, success: { (responseObject) in
-                
+                print(NSThread.currentThread())
                 if let dict = responseObject as? [String:NSObject],array = dict["books"] as? [[String:NSObject]]{
                     for dict in array {
                         self.books.append(Book(dict: dict))
@@ -80,14 +62,36 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 print(self.books.count)
                 self.page += 1
                 self.tableView.headerEndRefresh()
-            }) { (eror) in
-                print(eror)
-                self.tableView.headerEndRefresh()
+                }) { (eror) in
+                    print(eror)
+                    self.tableView.headerEndRefresh()
             }
         }
-        
-        
-
+        tableView.footerAddMJRefresh() {
+            self.tableView.footerResetNoMoreData()
+            NetManager.GET(self.URLString, parameters: ["tag":self.tag,"start":self.page,"count":self.pagesize], showHUD: false, success: { (responseObject) in
+                    print(NSThread.currentThread())
+                    var indexPaths = [NSIndexPath]()
+                    if let dict = responseObject as? [String:NSObject],array = dict["books"] as? [[String:NSObject]]{
+                        let count = self.books.count
+                        for (i,dict) in array.enumerate() {
+                            self.books.append(Book(dict: dict))
+                            indexPaths.append(NSIndexPath(forRow: count + i, inSection: 0))
+                        }
+                        self.tableView.reloadData()
+                    }
+                    if indexPaths.isEmpty{
+                        self.tableView.footerEndRefreshNoMoreData()
+                    }else{
+                        self.page++
+                        self.tableView.footerEndFresh()
+                        self.tableView.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Automatic)
+                    }
+                
+                }) { (eror) in
+                    print(eror)
+                    self.tableView.headerEndRefresh()
+            }
+        }
     }
-
 }

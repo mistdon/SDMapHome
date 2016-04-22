@@ -31,11 +31,13 @@ extension UIImageView{
             self.image = cacheImage
         }else{
             SDWebImageDownloader.sharedDownloader().downloadImageWithURL(url, options: SDWebImageDownloaderOptions.AllowInvalidSSLCertificates, progress: nil, completed: { (var  image, data, error, result) in
-                if image != nil && image.size.width > width{
-                    let size = CGSizeMake(width, image.size.height * (width / image.size.width))
-                    image = image.resizeToSize(size)
-                }
-                self.image = image
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    if image != nil && image.size.width > width{
+                        let size = CGSizeMake(width, image.size.height * (width / image.size.width))
+                        image = image.resizeToSize(size)
+                    }
+                    self.image = image
+                })
             })
         }
     }

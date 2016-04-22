@@ -85,7 +85,6 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-SDMapHome/AFNetworking.framework"
-  install_framework "Pods-SDMapHome/Alamofire.framework"
   install_framework "Pods-SDMapHome/CocoaLumberjack.framework"
   install_framework "Pods-SDMapHome/DateTools.framework"
   install_framework "Pods-SDMapHome/MJExtension.framework"
@@ -95,10 +94,10 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-SDMapHome/Result.framework"
   install_framework "Pods-SDMapHome/SDWebImage.framework"
   install_framework "Pods-SDMapHome/SVProgressHUD.framework"
+  install_framework "Pods-SDMapHome/pop.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-SDMapHome/AFNetworking.framework"
-  install_framework "Pods-SDMapHome/Alamofire.framework"
   install_framework "Pods-SDMapHome/CocoaLumberjack.framework"
   install_framework "Pods-SDMapHome/DateTools.framework"
   install_framework "Pods-SDMapHome/MJExtension.framework"
@@ -108,4 +107,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-SDMapHome/Result.framework"
   install_framework "Pods-SDMapHome/SDWebImage.framework"
   install_framework "Pods-SDMapHome/SVProgressHUD.framework"
+  install_framework "Pods-SDMapHome/pop.framework"
 fi

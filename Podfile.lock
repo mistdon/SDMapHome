@@ -14,7 +14,6 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - Alamofire (3.3.1)
   - AMap3DMap (3.3.2)
   - AMapLocation (1.2.2)
   - AMapSearch (3.3.0)
@@ -30,6 +29,7 @@ PODS:
   - Masonry (1.0.0)
   - MJExtension (3.0.10)
   - MJRefresh (3.1.0)
+  - pop (1.0.9)
   - ReactiveCocoa (4.0.4-alpha-4):
     - ReactiveCocoa/UI (= 4.0.4-alpha-4)
     - Result (~> 1.0)
@@ -49,7 +49,6 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - Alamofire
   - AMap3DMap
   - AMapLocation
   - AMapSearch
@@ -58,13 +57,13 @@ DEPENDENCIES:
   - Masonry
   - MJExtension
   - MJRefresh (~> 3.1.0)
+  - pop (~> 1.0)
   - ReactiveCocoa (~> 4.0.4-alpha-1)
   - SDWebImage
   - SVProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   AMap3DMap: 6315b7489cb60b1c47bb51169b409c20efa5f527
   AMapLocation: 5412fbf0385716d4d481e39a95929057cddc093f
   AMapSearch: cff4faf59c007f7d1f2bae2d7170c3912783981a
@@ -73,6 +72,7 @@ SPEC CHECKSUMS:
   Masonry: b529bb169217897b6354d4b56b1fada6d475b13d
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   ReactiveCocoa: e459ea92099447802df20c4735e31e8139b06094
   Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
